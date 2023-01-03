@@ -16,7 +16,7 @@ def paginaweb():
 	return mensaje
 	
 def paginaweb2():
-	
+	#hi
 	add=""
 	f = open('templates/index.html','w')
 	add=add+"""<table class="default"><tr><th>Traps</th></tr>"""
