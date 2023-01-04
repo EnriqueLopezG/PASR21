@@ -18,9 +18,9 @@ def paginaweb():
 def paginaweb2():
 	#hi
 	add=""
-	f = open('templates/index.html','w')
+	f = open('../templates/index.html', 'w')
 	add=add+"""<table class="default"><tr><th>Traps</th></tr>"""
-	with open('resultados.txt', 'r') as fichero:
+	with open('../resultados.txt', 'r') as fichero:
 		linea = fichero.readline()
 		add=add+"""<tr><td>"""+linea+"""</td></tr>"""
 		while linea != '':

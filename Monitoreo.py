@@ -1,7 +1,6 @@
 from flask import Flask,render_template
 import pysnmp
 import paramiko, getpass, time
-import snmpi
 import pexpect
 import os
 import threading
@@ -11,7 +10,7 @@ import time
 import shutil
 from static import graficas
 import webbrowser
-import webpy
+from tools import webpy, snmpi
 import pysnmp
 from pysnmp.entity import engine, config
 from pysnmp.carrier.asyncore.dgram import udp
