@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+
 import pysnmp
 import paramiko, getpass, time
 import pexpect
@@ -23,6 +23,7 @@ import shutil
 puntosx=[]
 puntosy=[]
 rectas=[]
+
 
 class Worker(threading.Thread):
 	import pysnmp
@@ -73,18 +74,10 @@ class Worker(threading.Thread):
 			raise
 
 
-app = Flask(__name__)
 
-IMG_FOLDER = os.path.join('static', 'IMG')
 
-app.config['UPLOAD_FOLDER'] = IMG_FOLDER
 
-@app.route('/')
-def s():
-	return "monitoreo"
-
-@app.route('/monitoreo')
-def route():
+def Monitoreo():
 
 	# Interface OID
 	fa0_0_in_oct = '1.3.6.1.2.1.2.2.1.10.4'
@@ -133,15 +126,15 @@ def route():
 			graficas.grafica(puntosx,puntosy,rectas)
 		time.sleep(5)
 		
-	return "Monitoreo Finalizado"
+
 	
-@app.route('/visualizar')
+
 def visualizar():
 
 	GRA = os.path.join(app.config['UPLOAD_FOLDER'],'grafica.jpg')
 	return render_template("index.html", user_image=GRA)
 
-@app.route('/reiniciar')
+
 def reiniciar():
 	if path.exists("/home/enriquelopez/Descargas/Flask/P5/resultados.txt"):
 		print("Existe RES")
@@ -167,7 +160,7 @@ def reiniciar():
 	graficas.clear()
 	return "Reinicio"
 
-@app.route('/monitoreo2')
+
 def monitoreo2():
 
 	hilo = Monitoreos()
@@ -177,10 +170,6 @@ def monitoreo2():
 	GRA = os.path.join(app.config['UPLOAD_FOLDER'],'grafica.jpg')
 	return render_template("index.html", user_image=GRA)
 	
-
-	
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
 
 
 
